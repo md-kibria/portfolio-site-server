@@ -71,7 +71,7 @@ app.get('/', (req, res) => {
         host: req.hostname,
         port: PORT
     }
-    res.render('index', {title: "hello"})
+    res.render('index', {title: "Site Map"})
 })
 
 
