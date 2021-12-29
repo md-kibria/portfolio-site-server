@@ -67,6 +67,7 @@ app.use('/siteinfo', siteInfoRouter)
 // Root Route
 app.get('/', (req, res) => {
     res.locals = {
+        // Set Local Variable
         protocol: req.protocol,
         host: req.hostname,
         port: PORT
