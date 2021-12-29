@@ -1,0 +1,150 @@
+- let link = `${protocol}://${host}:${port}`
+mixin link(title, path, method = 'get', isProtected = true)
+
+     li 
+        span #{title} (Method: 
+            span.met #{String(method).toUpperCase()}
+            | )
+        p #{link + path + ' '}
+            if (isProtected) 
+                span.pro (protected) 
+            else 
+                span.pub (public)
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Site Map
+        style.
+            body {
+                background-color: black;
+                color: white;
+                font-family: sans-serif;
+                padding: 20px;
+            }
+
+            header {
+                margin-top: 20px;
+            }
+
+            h1 {
+                text-align: center;
+                font-weight: 300;
+                margin: 25px 0;
+            }
+
+            main {
+                //- display: grid;
+                //- grid-template-columns: 1fr 1fr 1fr;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            div {
+                margin: 10px;
+                flex-grow: 1;
+            }
+
+            ul {
+                padding-left: 20px;
+            }
+
+            h3 {
+                padding-left: 10px;
+            }
+
+            span {
+                color: #888;
+            }
+
+            .pro {
+                color: #bc1ca0;
+            }
+
+            .pub {
+                color: green;
+            }
+
+            .met {
+                color: #6795fce6;
+            }
+
+            p {
+                color: #ccc;
+                letter-spacing: 0.2px;
+                margin-top: 5px;
+            }
+    body
+        header
+            h1 Site Map
+            hr/
+
+        main
+            div
+                h3 Users
+                hr/
+                ul 
+                    +link('Get All Users', '/users/')
+                    +link('Get Single User', '/users/:id')
+                    +link('SignUp User', '/users/signup', 'post',false)
+                    +link('Login Users', '/users/login', 'post', false)
+                    +link('Update User', '/users/update/:id', 'put')
+                    +link('Delete User', '/users/delete/:id', 'delete')
+                    +link('Change User Password', '/users/changepass', 'put')
+
+            div 
+                h3 Skills 
+                hr/
+                ul 
+                    +link('Get All Skills', '/skills/')
+                    +link('Add Skill', '/skills/add', 'post')
+                    +link('Update Skill', '/skills/update/:id', 'put')
+                    +link('Delete Skill', '/skills/delete/:id', 'delete')
+
+            div 
+                h3 Projects 
+                hr/
+                ul 
+                    +link('Get All Projects', '/projects/')
+                    +link('Get Single Project', '/projects/:id')
+                    +link('Get All Publish Projects', '/projects/publish/')
+                    +link('Get All Pending Projects', '/projects/pending/')
+                    +link('Search Projects', '/projects/search?q=')
+                    +link('Create Project', '/projects/create', 'post')
+                    +link('Update Projects', '/projects/update/:id', 'put')
+                    +link('DeleteProjects', '/projects/delete/:id', 'delete')
+
+            div 
+                 h3 Contact 
+                 hr/
+                 ul
+                    +link('Get All Contact Info', '/contact/')
+                    +link('Update Contact Info', '/contact/update/:id', 'put')
+
+            div 
+                h3 Message 
+                hr/
+                ul 
+                    +link('Get All Messages', '/messages/')
+                    +link('Get Single Message', '/messages/:id')
+                    +link('Send Messages', '/messages/send', 'post', false)
+                    +link('Delete Messages', '/messages/delete/:id', 'delete')
+
+            div 
+                h3 Subscribe
+                hr/
+                ul
+                    +link('Get All Subscribers', '/subs/')
+                    +link('Add Subscribers', '/subs/add', 'post', false)
+                    +link('Delete Subscriber', '/subs/delete/:id', 'delete')
+
+            div 
+                h3 Site Info 
+                hr/
+                ul 
+                    +link('Get All Info', '/siteinfo')
+                    +link('Update Info', '/siteinfo/update/:id', 'put')
