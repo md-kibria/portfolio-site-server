@@ -31,7 +31,12 @@ const siteInfoSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    heroTitle: {
+    heroTitle1: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    heroTitle2: {
         type: String,
         required: true,
         trim: true

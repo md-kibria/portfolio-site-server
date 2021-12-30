@@ -9,7 +9,7 @@ const notFound = require('../utils/notFound')
 // Create Site Info
 const createSiteInfo = async (req, res, next) => {
     // Get data from request body
-    const { copyright, socialLinks, aboutText, heroTitle, heroDesc } = req.body
+    const { copyright, socialLinks, aboutText, heroTitle1, heroTitle2, heroDesc } = req.body
 
     let logo = ''
     let fav = ''
@@ -48,7 +48,8 @@ const createSiteInfo = async (req, res, next) => {
             socialLinks: socialLinks || {},
             aboutText,
             aboutImg,
-            heroTitle,
+            heroTitle1,
+            heroTitle2,
             heroDesc,
             heroImg
         })
@@ -78,7 +79,7 @@ const updateSiteInfo = async (req, res, next) => {
         // Site info found
         if (oldSiteInfo) {
             // Get data from request body
-            const { copyright, socialLinks, aboutText, heroTitle, heroDesc } = req.body
+            const { copyright, socialLinks, aboutText, heroTitle1, heroTitle2, heroDesc } = req.body
 
             let logo = ''
             let fav = ''
@@ -141,7 +142,8 @@ const updateSiteInfo = async (req, res, next) => {
                 socialLinks: socialLinks || oldSiteInfo.socialLinks,
                 aboutText: aboutText || oldSiteInfo.aboutText,
                 aboutImg: aboutImg || oldSiteInfo.aboutImg,
-                heroTitle: heroTitle || oldSiteInfo.heroTitle,
+                heroTitle1: heroTitle1 || oldSiteInfo.heroTitle1,
+                heroTitle2: heroTitle2 || oldSiteInfo.heroTitle2,
                 heroDesc: heroDesc || oldSiteInfo.heroDesc,
                 heroImg: heroImg || oldSiteInfo.heroImg,
             }
