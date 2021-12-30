@@ -61,6 +61,6 @@ router.put(
 )
 
 // Get Site Info
-router.get('/', authenticate, getSiteInfo)
+router.get('/', getSiteInfo)
 
 module.exports = router

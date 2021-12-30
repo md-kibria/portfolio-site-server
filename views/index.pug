@@ -100,7 +100,7 @@ html(lang="en")
                 h3 Skills 
                 hr/
                 ul 
-                    +link('Get All Skills', '/skills/')
+                    +link('Get All Skills', '/skills/', 'get', false)
                     +link('Add Skill', '/skills/add', 'post')
                     +link('Update Skill', '/skills/update/:id', 'put')
                     +link('Delete Skill', '/skills/delete/:id', 'delete')
@@ -109,11 +109,11 @@ html(lang="en")
                 h3 Projects 
                 hr/
                 ul 
-                    +link('Get All Projects', '/projects/')
-                    +link('Get Single Project', '/projects/:id')
-                    +link('Get All Publish Projects', '/projects/publish/')
-                    +link('Get All Pending Projects', '/projects/pending/')
-                    +link('Search Projects', '/projects/search?q=')
+                    +link('Get All Projects', '/projects/', 'get', false)
+                    +link('Get Single Project', '/projects/:id', 'get', false)
+                    +link('Get All Publish Projects', '/projects/publish/', 'get', false)
+                    +link('Get All Pending Projects', '/projects/pending/', 'get', false)
+                    +link('Search Projects', '/projects/search?q=', 'get', false)
                     +link('Create Project', '/projects/create', 'post')
                     +link('Update Projects', '/projects/update/:id', 'put')
                     +link('DeleteProjects', '/projects/delete/:id', 'delete')
@@ -122,7 +122,7 @@ html(lang="en")
                  h3 Contact 
                  hr/
                  ul
-                    +link('Get All Contact Info', '/contact/')
+                    +link('Get All Contact Info', '/contact/', 'get', false)
                     +link('Update Contact Info', '/contact/update/:id', 'put')
 
             div 
@@ -146,5 +146,5 @@ html(lang="en")
                 h3 Site Info 
                 hr/
                 ul 
-                    +link('Get All Info', '/siteinfo')
+                    +link('Get All Info', '/siteinfo', 'get', false)
                     +link('Update Info', '/siteinfo/update/:id', 'put')

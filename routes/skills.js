@@ -11,7 +11,7 @@ const authenticate = require('../utils/authenticate')
 router.post('/add', authenticate, upload.single('img'), addSkillValidator, addSkillValidatorHandler, addSkill)
 
 // Get Skills Route
-router.get('/', authenticate, getSkills)
+router.get('/', getSkills)
 
 // Update Skill Route
 router.put('/update/:id', authenticate, upload.single('img'), updateSkill)

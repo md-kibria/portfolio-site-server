@@ -10,7 +10,7 @@ const {setContactInfo, getContactInfo, updateContactInfo} = require('../controll
 router.post('/add', authenticate, breaker, setContactInfo)
 
 // Get Contact Info
-router.get('/', authenticate, getContactInfo)
+router.get('/', getContactInfo)
 
 // Update Contact Info
 router.put('/update/:id', authenticate, updateContactInfo)

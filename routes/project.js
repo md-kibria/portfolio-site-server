@@ -27,19 +27,19 @@ router.post(
 )
 
 // Get All Projects
-router.get('/', authenticate, getAllProjects)
+router.get('/', getAllProjects)
 
 // Get All Publish Projects
-router.get('/publish', authenticate, getPublishProjects)
+router.get('/publish', getPublishProjects)
 
 // Get All Pending Projects
-router.get('/pending', authenticate, getPendingProjects)
+router.get('/pending', getPendingProjects)
 
 // Search Projects
-router.get('/search?q=', authenticate, searchProjects)
+router.get('/search?q=', searchProjects)
 
 // Get Single Project
-router.get('/:id', authenticate, getSingleProject)
+router.get('/:id', getSingleProject)
 
 // Update project Router
 router.put(
