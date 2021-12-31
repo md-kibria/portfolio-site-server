@@ -7,6 +7,10 @@ const siteInfoSchema = mongoose.Schema({
         type: String,
         trim: true
     },
+    footerLogo: {
+        type: String,
+        trim: true
+    },
     fav: {
         type: String,
         trim: true

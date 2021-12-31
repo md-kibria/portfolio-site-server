@@ -19,6 +19,10 @@ router.post(
             maxCount: 1
         },
         {
+            name: 'footerLogo',
+            maxCount: 1
+        },
+        {
             name: 'fav',
             maxCount: 1
         },
@@ -41,6 +45,10 @@ router.put(
     upload.fields([
         {
             name: 'logo',
+            maxCount: 1
+        },
+        {
+            name: 'footerLogo',
             maxCount: 1
         },
         {

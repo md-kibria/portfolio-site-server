@@ -12,6 +12,7 @@ const createSiteInfo = async (req, res, next) => {
     const { copyright, socialLinks, aboutText, heroTitle1, heroTitle2, heroDesc } = req.body
 
     let logo = ''
+    let footerLogo = ''
     let fav = ''
     let heroImg = 'default.jpg'
     let aboutImg = 'default.jpg'
@@ -21,6 +22,11 @@ const createSiteInfo = async (req, res, next) => {
         // If logo
         if (req.files.logo) {
             logo = req.files.logo[0].filename
+        }
+
+        // If footer logo
+        if (req.files.footerLogo) {
+            logo = req.files.footerLogo[0].filename
         }
 
         // If fav
@@ -43,6 +49,7 @@ const createSiteInfo = async (req, res, next) => {
         // New site info
         const newSiteInfo = new SiteInfo({
             logo,
+            footerLogo,
             fav,
             copyright,
             socialLinks: socialLinks || {},
@@ -83,6 +90,7 @@ const updateSiteInfo = async (req, res, next) => {
 
             let logo = ''
             let fav = ''
+            let footerLogo = ''
             let aboutImg = ''
             let heroImg = ''
 
@@ -95,6 +103,18 @@ const updateSiteInfo = async (req, res, next) => {
 
                     // Delete the previous
                     fs.unlink(path.join(__dirname, `/../public/uploads/${oldSiteInfo.logo}`), (err) => {
+                        if (err) next(err)
+                    })
+
+                }
+
+                // If logo
+                if (req.files.footerLogo) {
+                    // Set logo
+                    footerLogo = req.files.footerLogo[0].filename
+
+                    // Delete the previous
+                    fs.unlink(path.join(__dirname, `/../public/uploads/${oldSiteInfo.footerLogo}`), (err) => {
                         if (err) next(err)
                     })
 
@@ -137,6 +157,7 @@ const updateSiteInfo = async (req, res, next) => {
             // Updated site info object
             const newUpdateSiteInfo = {
                 logo: logo || oldSiteInfo.logo,
+                footerLogo: footerLogo || oldSiteInfo.footerLogo,
                 fav: fav || oldSiteInfo.fav,
                 copyright: copyright || oldSiteInfo.copyright,
                 socialLinks: socialLinks || oldSiteInfo.socialLinks,
