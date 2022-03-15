@@ -36,7 +36,8 @@ router.get('/publish', getPublishProjects)
 router.get('/pending', getPendingProjects)
 
 // Search Projects
-router.get('/search?q=', searchProjects)
+// router.get('/search?q=', searchProjects)
+router.get('/search', searchProjects)
 
 // Get Single Project
 router.get('/:id', getSingleProject)

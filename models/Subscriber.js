@@ -8,7 +8,7 @@ const subscriberSchema = mongoose.Schema({
         required: true,
         trim: true
     }
-})
+}, {timestamps: true})
 
 // Subscriber Model
 const Subscriber = mongoose.model('Subscriber', subscriberSchema)

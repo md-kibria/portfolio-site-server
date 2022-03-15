@@ -22,7 +22,7 @@ const messageSchem = mongoose.Schema({
         type: Boolean,
         default: false
     }
-})
+}, {timestamps: true})
 
 // Message Model
 const Message = mongoose.model('Message', messageSchem)

@@ -21,8 +21,16 @@ const userSchema = new Schema({
         minLength: 6,
         required: true
     },
+    phone: {
+        type: String,
+        trim: true
+    },
+    address: {
+        type: String,
+        trim: true
+    },
     img: String
-})
+}, {timestamps: true})
 
 
 // User Model

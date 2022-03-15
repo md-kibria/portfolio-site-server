@@ -93,6 +93,7 @@ const updateSiteInfo = async (req, res, next) => {
             let footerLogo = ''
             let aboutImg = ''
             let heroImg = ''
+            let resume = ''
 
             // If request with file
             if (req.files) {
@@ -103,7 +104,7 @@ const updateSiteInfo = async (req, res, next) => {
 
                     // Delete the previous
                     fs.unlink(path.join(__dirname, `/../public/uploads/${oldSiteInfo.logo}`), (err) => {
-                        if (err) next(err)
+                        if (err) console.log(err)
                     })
 
                 }
@@ -115,7 +116,7 @@ const updateSiteInfo = async (req, res, next) => {
 
                     // Delete the previous
                     fs.unlink(path.join(__dirname, `/../public/uploads/${oldSiteInfo.footerLogo}`), (err) => {
-                        if (err) next(err)
+                        if (err) console.log(err)
                     })
 
                 }
@@ -127,7 +128,7 @@ const updateSiteInfo = async (req, res, next) => {
 
                     // Delete the previous
                     fs.unlink(path.join(__dirname, `/../public/uploads/${oldSiteInfo.fav}`), (err) => {
-                        if (err) next(err)
+                        if (err) console.log(err)
                     })
                 }
 
@@ -138,7 +139,7 @@ const updateSiteInfo = async (req, res, next) => {
 
                     // Delete the previous
                     fs.unlink(path.join(__dirname, `/../public/uploads/${oldSiteInfo.aboutImg}`), (err) => {
-                        if (err) next(err)
+                        if (err) console.log(err)
                     })
                 }
 
@@ -149,7 +150,18 @@ const updateSiteInfo = async (req, res, next) => {
 
                     // Delete the previous
                     fs.unlink(path.join(__dirname, `/../public/uploads/${oldSiteInfo.heroImg}`), (err) => {
-                        if (err) next(err)
+                        if (err) console.log(err)
+                    })
+                }
+
+                // If resume 
+                if(req.files.resume) {
+                    // set resume
+                    resume = req.files.resume[0].filename
+
+                    // delete the previous
+                    fs.unlink(path.join(__dirname, `/../public/uploads/${oldSiteInfo.resume}`), err => {
+                        if(err) console.log(err)
                     })
                 }
             }
@@ -167,6 +179,7 @@ const updateSiteInfo = async (req, res, next) => {
                 heroTitle2: heroTitle2 || oldSiteInfo.heroTitle2,
                 heroDesc: heroDesc || oldSiteInfo.heroDesc,
                 heroImg: heroImg || oldSiteInfo.heroImg,
+                resume: resume || oldSiteInfo.resume
             }
 
             // Update the site info
@@ -187,28 +200,28 @@ const updateSiteInfo = async (req, res, next) => {
                 // If logo
                 if (req.files.logo) {
                     fs.unlink(path.join(__dirname, `/../public/uploads/${req.files.logo[0].filename}`), (err) => {
-                        if (err) next(err)
+                        if (err) console.log(err)
                     })
                 }
 
                 // If fav
                 if (req.files.fav) {
                     fs.unlink(path.join(__dirname, `/../public/uploads/${req.files.fav[0].filename}`), (err) => {
-                        if (err) next(err)
+                        if (err) console.log(err)
                     })
                 }
 
                 // If about image
                 if (req.files.aboutImg) {
                     fs.unlink(path.join(__dirname, `/../public/uploads/${req.files.aboutImg[0].filename}`), (err) => {
-                        if (err) next(err)
+                        if (err) console.log(err)
                     })
                 }
 
                 // If hero image
                 if (req.files.heroImg) {
                     fs.unlink(path.join(__dirname, `/../public/uploads/${req.files.heroImg[0].filename}`), (err) => {
-                        if (err) next(err)
+                        if (err) console.log(err)
                     })
                 }
             }

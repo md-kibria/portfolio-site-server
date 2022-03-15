@@ -44,7 +44,7 @@ const projectSchema = mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'User'
     }
-})
+}, { timestamps: true })
 
 // Instance Method
 projectSchema.methods = {
@@ -63,7 +63,12 @@ projectSchema.methods = {
 projectSchema.statics = {
     // Search project
     searchProjects: function (q) {
-        return this.find({title: new RegExp(q, 'i')})
+        return this.find({
+            $or: [
+                { "title": { $regex: q, $options: 'i' } },
+                { "description": { $regex: q, $options: 'i' } }
+            ]
+        })
     }
 }
 

@@ -33,7 +33,10 @@ const registerUser = async (req, res, next) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            img: user.img
+            img: user.img,
+            phone: user.phone,
+            address: user.address,
+            join: user.createdAt,
         }, process.env.JWT_SECRET)
 
         // Response to client
@@ -67,7 +70,10 @@ const loginUser = async (req, res, next) => {
                 _id: user._id,
                 name: user.name,
                 email: user.email,
-                img: user.img
+                img: user.img,
+                phone: user.phone,
+                address: user.address,
+                join: user.createdAt,
             }, process.env.JWT_SECRET)
 
             // Response to client
@@ -99,7 +105,7 @@ const updateUser = async (req, res, next) => {
         const { id } = req.params
 
         // Get the data from request body
-        const { name, email } = req.body
+        const { name, email, phone, address } = req.body
 
         // Check the user 
         const user = await User.findById(id)
@@ -109,6 +115,8 @@ const updateUser = async (req, res, next) => {
             const updateNewUser = {
                 name: name || user.name,
                 email: email || user.email,
+                phone: phone || user.phone,
+                address: address || user.address,
                 img: req.file ? req.file.filename : user.img
             }
 

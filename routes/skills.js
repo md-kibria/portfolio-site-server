@@ -2,7 +2,7 @@
 const router = require('express').Router()
 
 // Internal Imports
-const { addSkill, getSkills, updateSkill, deleteSkill } = require('../controllers/skills')
+const { addSkill, getSkills, getSingleSkill, updateSkill, deleteSkill } = require('../controllers/skills')
 const { addSkillValidator, addSkillValidatorHandler } = require('../utils/validators/addSkill-validator')
 const upload = require('../utils/upload')
 const authenticate = require('../utils/authenticate')
@@ -12,6 +12,9 @@ router.post('/add', authenticate, upload.single('img'), addSkillValidator, addSk
 
 // Get Skills Route
 router.get('/', getSkills)
+
+// Get Single Skill Route
+router.get('/:id', getSingleSkill)
 
 // Update Skill Route
 router.put('/update/:id', authenticate, upload.single('img'), updateSkill)

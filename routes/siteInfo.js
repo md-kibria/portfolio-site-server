@@ -5,7 +5,7 @@ const router = require('express').Router()
 const authenticate = require('../utils/authenticate')
 const upload = require('../utils/upload')
 const breaker = require('../utils/breaker')
-const {updateSiteInfoValidtor} = require('../utils/validators/updateSiteInfo-validator')
+const { updateSiteInfoValidtor } = require('../utils/validators/updateSiteInfo-validator')
 const { createSiteInfo, getSiteInfo, updateSiteInfo } = require('../controllers/siteInfo')
 
 // Create Site Info
@@ -61,6 +61,10 @@ router.put(
         },
         {
             name: 'aboutImg',
+            maxCount: 1
+        },
+        {
+            name: 'resume',
             maxCount: 1
         }
     ]),

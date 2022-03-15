@@ -62,6 +62,10 @@ const getSingleMessage = async (req, res, next) => {
         
         // If message found
         if(message) {
+
+            // Set isSeen: true
+            await Message.findByIdAndUpdate(id, {$set: {isSeen: true}})
+
             // Response to client
             res.status(200).json({
                 msg: "Single message",

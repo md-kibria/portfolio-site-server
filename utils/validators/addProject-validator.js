@@ -8,7 +8,7 @@ const addProjectValidator = [
     // Check title
     check('title')
         .isLength({ min: 1 })
-        .withMessage('Please provide a tile')
+        .withMessage('Please provide a title')
         .trim(),
 
     // Check thumbnail image
@@ -43,6 +43,7 @@ const addProjectValidator = [
     // Check screensort image
     check('ssImg')
         .custom((value, { req }) => {
+            console.log(req.files.ssImg)
             if (req.files.ssImg.length !== 0) {
                 return true
             } else {
@@ -84,23 +85,28 @@ const addProjectValidatorHandler = (req, res, next) => {
         // If error occured
 
         // If requested with thumbnail img file
-        if (req.files.thmbImg) {
-            fs.unlink(path.join(__dirname, `/../../public/uploads/${req.files.thmbImg[0].filename}`), (err) => {
-                if (err) {
-                    next(err)
-                }
-            })
-        }
+        if (req.files) {
 
-        // If requested with screensort imgs file
-        if (req.files.ssImg) {
-            for (let i = 0; i < req.files.ssImg.length; i++) {
-                fs.unlink(path.join(__dirname, `/../../public/uploads/${req.files.ssImg[i].filename}`), (err) => {
+            if (req.files.thmbImg) {
+                fs.unlink(path.join(__dirname, `/../../public/uploads/${req.files.thmbImg[0].filename}`), (err) => {
                     if (err) {
                         next(err)
                     }
                 })
             }
+
+
+            // If requested with screensort imgs file
+            if (req.files.ssImg) {
+                for (let i = 0; i < req.files.ssImg.length; i++) {
+                    fs.unlink(path.join(__dirname, `/../../public/uploads/${req.files.ssImg[i].filename}`), (err) => {
+                        if (err) {
+                            next(err)
+                        }
+                    })
+                }
+            }
+
         }
 
         // Response to client

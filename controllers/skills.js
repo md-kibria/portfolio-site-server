@@ -33,7 +33,7 @@ const addSkill = async (req, res, next) => {
     }
 }
 
-// Get-Skill Controller
+// Get-All-Skill Controller
 const getSkills = async (req, res, next) => {
     try {
         // Find all items
@@ -46,6 +46,30 @@ const getSkills = async (req, res, next) => {
             res.status(200).json({
                 msg: "All skills",
                 allSkills
+            })
+        } else {
+            // If skill not found, response to client
+            notFound(res, "Skills not found")
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
+// Get-Single-Skill Controller
+const getSingleSkill = async (req, res, next) => {
+    const {id} = req.params
+    try {
+        // Find all items
+        const skill = await Skill.findById(id).select({
+            __v: 0,
+        })
+
+        if (skill.length !== 0) {
+            // If skill found, response to client
+            res.status(200).json({
+                msg: "Single skill",
+                skill
             })
         } else {
             // If skill not found, response to client
@@ -156,6 +180,7 @@ const deleteSkill = async (req, res, next) => {
 module.exports = {
     addSkill,
     getSkills,
+    getSingleSkill,
     updateSkill,
     deleteSkill
 }

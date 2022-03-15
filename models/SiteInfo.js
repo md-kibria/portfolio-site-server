@@ -54,6 +54,10 @@ const siteInfoSchema = mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    resume: {
+        type: String, 
+        required: true
     }
 })
 

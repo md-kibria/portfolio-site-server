@@ -68,17 +68,27 @@ const createProject = async (req, res, next) => {
 
 // Get All Projects
 const getAllProjects = async (req, res, next) => {
+
+    const {post, page} = req.query
+    let postPerPage = Number(post)
+    let currPage = Number(page)
+
     try {
         // Get all project from db
-        const projects = await Project.find().select({
-            __v: 0
-        })
+        const projects = await Project.find()
+            .populate('author', 'name email')
+            .select({
+                __v: 0
+            })
+            .skip((postPerPage * currPage) - postPerPage)
+            .limit(postPerPage)
 
         if (projects.length !== 0) {
             // If projects found, response to client
             res.status(200).json({
                 msg: "All projects",
                 total: projects.length,
+                numberOfPages: projects.length / postPerPage,
                 projects
             })
         } else {
@@ -96,10 +106,12 @@ const getSingleProject = async (req, res, next) => {
     const { id } = req.params
 
     try {
-        // Find the project 
-        const project = await Project.findById(id).select({
-            __v: 0
-        })
+        // Find the project
+        const project = await Project.findById(id)
+            .populate('author', 'name email')
+            .select({
+                __v: 0
+            })
 
         // If project exist
         if (project) {
@@ -123,7 +135,9 @@ const getPublishProjects = async (req, res, next) => {
     try {
         // Find Projects
         const project = new Project()
-        const data = await project.findPublish().select({ __v: 0 })
+        const data = await project.findPublish()
+            .populate('author', 'name email')
+            .select({ __v: 0 })
 
         if (data) {
             // If projects find, response to client
@@ -148,6 +162,7 @@ const getPendingProjects = async (req, res, next) => {
         // Find pending projects
         const project = new Project()
         const data = await project.findPending()
+            .populate('author', 'name email')
 
         console.log(data)
         if (data.length !== 0) {
@@ -172,7 +187,7 @@ const searchProjects = async (req, res, next) => {
     const { q } = req.query
 
     try {
-        // Find by js
+        // Search
         const data = await Project.searchProjects(q)
 
         if (data.length !== 0) {

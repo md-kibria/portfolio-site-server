@@ -18,6 +18,7 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title= title
+        link(rel="shortcut icon", href="./assets/favicon.png", type="image/x-icon")
         style.
             body {
                 background-color: black;
@@ -101,6 +102,7 @@ html(lang="en")
                 hr/
                 ul 
                     +link('Get All Skills', '/skills/', 'get', false)
+                    +link('Get Single Skill', '/skills/:id', 'get', false)
                     +link('Add Skill', '/skills/add', 'post')
                     +link('Update Skill', '/skills/update/:id', 'put')
                     +link('Delete Skill', '/skills/delete/:id', 'delete')
@@ -110,6 +112,7 @@ html(lang="en")
                 hr/
                 ul 
                     +link('Get All Projects', '/projects/', 'get', false)
+                    +link('Post Per Page And Page Index', '/projects?post=2&page=1', 'get', false)
                     +link('Get Single Project', '/projects/:id', 'get', false)
                     +link('Get All Publish Projects', '/projects/publish/', 'get', false)
                     +link('Get All Pending Projects', '/projects/pending/', 'get', false)
