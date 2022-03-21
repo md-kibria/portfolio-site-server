@@ -12,7 +12,7 @@ const { createSiteInfo, getSiteInfo, updateSiteInfo } = require('../controllers/
 router.post(
     '/create',
     authenticate,
-    breaker,
+    // breaker,
     upload.fields([
         {
             name: 'logo',

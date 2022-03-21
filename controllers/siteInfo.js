@@ -8,6 +8,24 @@ const notFound = require('../utils/notFound')
 
 // Create Site Info
 const createSiteInfo = async (req, res, next) => {
+
+    try {
+        const data = await SiteInfo.find()
+
+        if(data.length !== 0) {
+            res.status(400).json({
+                errors: {
+                    common: {
+                        msg: "Siteinfo already created"
+                    }
+                }
+            })
+        }
+
+    } catch (error) {
+        next(error)
+    }
+
     // Get data from request body
     const { copyright, socialLinks, aboutText, heroTitle1, heroTitle2, heroDesc } = req.body
 
@@ -58,7 +76,8 @@ const createSiteInfo = async (req, res, next) => {
             heroTitle1,
             heroTitle2,
             heroDesc,
-            heroImg
+            heroImg,
+            resume: req.files.resume ? req.files.resume[0].filename : 'resume.pdf'
         })
 
         // Save

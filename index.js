@@ -117,6 +117,7 @@ app.use((err, req, res, next) => {
 // Create Database Connection
 mongoose.connect(
     'mongodb://localhost:27017/portfolio',
+    // `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.fgyzv.mongodb.net/portfolio`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true

@@ -1,14 +1,14 @@
 - let link = `${protocol}://${host}:${port}`
 mixin link(title, path, method = 'get', isProtected = true)
 
-     li 
-        span #{title} (Method: 
+     li
+        span #{title} (Method:
             span.met #{String(method).toUpperCase()}
             | )
         p #{link + path + ' '}
-            if (isProtected) 
-                span.pro (protected) 
-            else 
+            if (isProtected)
+                span.pro (protected)
+            else
                 span.pub (public)
 
 doctype html
@@ -88,7 +88,7 @@ html(lang="en")
             div
                 h3 Users
                 hr/
-                ul 
+                ul
                     +link('Get All Users', '/users/')
                     +link('Get Single User', '/users/:id')
                     +link('SignUp User', '/users/signup', 'post',false)
@@ -97,20 +97,20 @@ html(lang="en")
                     +link('Delete User', '/users/delete/:id', 'delete')
                     +link('Change User Password', '/users/changepass', 'put')
 
-            div 
-                h3 Skills 
+            div
+                h3 Skills
                 hr/
-                ul 
+                ul
                     +link('Get All Skills', '/skills/', 'get', false)
                     +link('Get Single Skill', '/skills/:id', 'get', false)
                     +link('Add Skill', '/skills/add', 'post')
                     +link('Update Skill', '/skills/update/:id', 'put')
                     +link('Delete Skill', '/skills/delete/:id', 'delete')
 
-            div 
-                h3 Projects 
+            div
+                h3 Projects
                 hr/
-                ul 
+                ul
                     +link('Get All Projects', '/projects/', 'get', false)
                     +link('Post Per Page And Page Index', '/projects?post=2&page=1', 'get', false)
                     +link('Get Single Project', '/projects/:id', 'get', false)
@@ -121,23 +121,23 @@ html(lang="en")
                     +link('Update Projects', '/projects/update/:id', 'put')
                     +link('DeleteProjects', '/projects/delete/:id', 'delete')
 
-            div 
-                 h3 Contact 
+            div
+                 h3 Contact
                  hr/
                  ul
                     +link('Get All Contact Info', '/contact/', 'get', false)
                     +link('Update Contact Info', '/contact/update/:id', 'put')
 
-            div 
-                h3 Message 
+            div
+                h3 Message
                 hr/
-                ul 
+                ul
                     +link('Get All Messages', '/messages/')
                     +link('Get Single Message', '/messages/:id')
                     +link('Send Messages', '/messages/send', 'post', false)
                     +link('Delete Messages', '/messages/delete/:id', 'delete')
 
-            div 
+            div
                 h3 Subscribe
                 hr/
                 ul
@@ -145,9 +145,9 @@ html(lang="en")
                     +link('Add Subscribers', '/subs/add', 'post', false)
                     +link('Delete Subscriber', '/subs/delete/:id', 'delete')
 
-            div 
-                h3 Site Info 
+            div
+                h3 Site Info
                 hr/
-                ul 
+                ul
                     +link('Get All Info', '/siteinfo', 'get', false)
                     +link('Update Info', '/siteinfo/update/:id', 'put')
